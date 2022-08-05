@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDAwitter</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/favicon.jpeg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="nav">
+            <h1>SDAwitter Main Feed</h1>
+            <div class="navLinks">
+                <a class="navLink" href="/{{loggedInUser.username}}" onmouseover="hover(this)" onmouseout="unHover(this)">Home</a>
+                <a class="navLink" href="/feed" onmouseover="hover(this)" onmouseout="unHover(this)">Main</a>
+                <a class="navLink" href="/logout" onmouseover="hover(this)" onmouseout="unHover(this)">Logout</a>
+            </div>
+        </div>
+        {% for post in posts %}
+        <div class="post">
+            <div>
+                <a class="userLink" href="/{{post.user.username}}">{{post.user.fname}} {{post.user.lname}}</a>
+                <p>{{post.content}}</p>
+            </div>
+            <div class="rightPost">
+                <p class="timeStamp">{{post.createdAt}}</p>
+            </div>
+        </div>
+        {%endfor%}
+        <div id="footer">
+            <p>...this is the bottom...</p>
+        </div>
+    </div>
+</body>
+
+</html>

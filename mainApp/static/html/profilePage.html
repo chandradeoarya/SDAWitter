@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.username}}</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/favicon.jpeg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <object data="{% static 'css/style.css' %}"></object>
+        <object data="{% static 'html/profilePage.html' %}"></object>
+        <div id="nav">
+            <div class="navTitle">
+                <a class="noStyle" href="/{{user.username}}"><h1>{{user.username}}'s Home</h1></a>
+                {% if user.id == request.session.loggedInUser %}
+                <div class="drop">
+                    <button onclick="showMenu(this)" class="dropBtn"><img src="{% static 'img/settings.webp' %}" alt="settings-icon" class="settingsIcon"></button>
+                    <div class="dropContent">
+                        <a href="">Edit Profile</a>
+                        <a href="">link 2</a>
+                    </div>
+                </div>
+                {% endif  %}
+            </div>
+            <div class="navLinks">
+                <a class="navLink" href="/{{loggedInUser.username}}" onmouseover="hover(this)" onmouseout="unHover(this)">Home</a>
+                <a class="navLink" href="/feed" onmouseover="hover(this)" onmouseout="unHover(this)">Main</a>
+                <a class="navLink" href="/logout" onmouseover="hover(this)" onmouseout="unHover(this)">Logout</a>
+            </div>
+        </div>
+        {% if user.id == request.session.loggedInUser %}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="error">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/createPost" method="post">
+            {% csrf_token %}
+            <div>
+                <textarea class="postContent" name="content" rows="5" placeholder="What's new {{user.fname}}?"></textarea>
+            </div>
+            <input type="submit" value="Create Post">
+        </form>
+        {% endif %}
+        {% for post in posts %}
+        <div class="post">
+            <p>{{post.content}}</p>
+            <div class="rightPost">
+                <p class="timeStamp">{{post.createdAt}}</p>
+                {% if user.id == request.session.loggedInUser %}
+                <div class="drop">
+                    <button onclick="showMenu(this)" class="dropBtn"><img src="{% static 'img/settings.webp' %}" alt="settings-icon" class="settingsIcon postIcon"></button>
+                    <div class="dropContent">
+                        <a href="">link 1</a>
+                        <a href="">link 2</a>
+                        <a class="deletePost" href="/deletePost/{{post.id}}">delete</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <div id="footer">
+            <p>...this is the bottom...</p>
+        </div>
+    </div>
+</body>
+
+</html>
