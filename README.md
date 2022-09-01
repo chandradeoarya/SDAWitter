@@ -34,6 +34,9 @@ cd env/Scripts
 .\activate
 
 #Install libraries
+# go back to the project folder 
+cd .. 
+cd ..
 pip3 install -r requirements.txt
 
 #Run code
