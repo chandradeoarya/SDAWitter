@@ -19,7 +19,30 @@ pip3 install -r requirements.txt
 python3 manage.py runserver
 
 ```
+#### How to run the code in windows 
+#### Note : run all commands inside the project folder 
 
+```sh
+# install virtual env:
+pip install virtualenv
+
+#Create virtual env:
+virtualenv env
+
+#Activate your virtual env:
+cd env/Scripts
+.\activate
+
+#Install libraries
+# go back to the project folder 
+cd .. 
+cd ..
+pip3 install -r requirements.txt
+
+#Run code
+python manage.py runserver
+
+```
 
 ##### Notes
 - For easiness database is committed but use postgres in production with migrations.
