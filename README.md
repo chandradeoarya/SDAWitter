@@ -1,5 +1,21 @@
 ## SDA + Twitter = SDAWitter
 
+<h3 align="center">
+SDAWitter (Twitter for SDA bootcamp students)
+</h3>
+
+This is a simple but fully functional Twitter clone built in Django framework using Docker and kubernetes and deployed in EKS with persistent volume. The project aims to show a simple yet standard way of developing and deploying django applications on docker and kubernetes. 
+
+<p align="center">
+  <img src = "https://github.com/chandradeoarya/SDAWitter/blob/master/SDAWitter.gif?raw=true" width=600>
+</p>
+
+### Contributors
+
+#### Developers
+- Nathan Bell
+- Chandradeo Arya
+
 ## Requirements
 - Python3 installed
 - Pip3 installed
